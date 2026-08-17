@@ -1,0 +1,10 @@
+# Only needed LOCALLY to run vectorize_documents.py when your data/ folder
+# contains images. Do NOT install this on your deployed backend — the
+# deployed app never imports vision_captioner.py, so it never needs torch.
+torch
+transformers
+einops
+timm
+Pillow
+PyMuPDF
+pdfplumber
