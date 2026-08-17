@@ -1,4 +1,4 @@
-# Backend — IITG RAG Chatbot API
+# Backend : IITG RAG Chatbot API
 
 FastAPI backend powering a conversational RAG chatbot for IIT Guwahati. Answers are grounded in the institute's own documents (PDFs, images, tables) via retrieval-augmented generation.
 
@@ -21,7 +21,7 @@ FastAPI backend powering a conversational RAG chatbot for IIT Guwahati. Answers 
 
 ```
 backend/
-├── main.py                    FastAPI app — the deployed server
+├── main.py                    FastAPI app-— the deployed server
 ├── vectorize_documents.py     Builds the vector DB from data/
 ├── vision_captioner.py        Moondream2 image captioning (ingest-time only)
 ├── requirements.txt           Deployed server dependencies
@@ -36,12 +36,12 @@ backend/
 
 1. **Ingestion** (`vectorize_documents.py`, run locally): reads every file in `data/`, extracts text (PyPDF2), tables (pdfplumber → Markdown), and images (PyMuPDF → captioned by Moondream2), then embeds everything into `vector_db_dir/`.
 2. **Serving** (`main.py`, what's deployed): on each chat request, a LangGraph pipeline runs:
-   - **Moderate** — classifies the message as allowed, abusive, or off-topic
-   - **Condense** — rewrites follow-up questions into standalone ones using chat history
-   - **Retrieve** — semantic search against ChromaDB
-   - **Generate** — Groq LLM answers using retrieved context
+   - **Moderate** - classifies the message as allowed, abusive, or off-topic
+   - **Condense** - rewrites follow-up questions into standalone ones using chat history
+   - **Retrieve** - semantic search against ChromaDB
+   - **Generate** - Groq LLM answers using retrieved context
 
-The deployed server never runs Moondream2/PyMuPDF/pdfplumber — those only run locally when you rebuild the vector DB.
+The deployed server never runs Moondream2/PyMuPDF/pdfplumber - those only run locally when you rebuild the vector DB.
 
 ## Local Setup
 
@@ -95,11 +95,11 @@ Check it's alive: `http://localhost:8000/api/health`
 - **Build Command:** `pip install -r requirements.txt`
 - **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
 - **Environment variables:**
-  - `GROQ_API_KEY` — your Groq API key
-  - `CORS_ORIGINS` — your deployed frontend's URL (e.g. `https://yourapp.vercel.app`)
-- `runtime.txt` pins Python to 3.11 — newer versions (3.13+) fail to build some dependencies from source.
+  - `GROQ_API_KEY` - your Groq API key
+  - `CORS_ORIGINS` - your deployed frontend's URL (e.g. `https://yourapp.vercel.app`)
+- `runtime.txt` pins Python to 3.11 - newer versions (3.13+) fail to build some dependencies from source.
 
 ## Notes
 
 - `vector_db_dir/` is committed to this repo so the deployed backend has working data without needing a build-time ingestion step.
-- Conversation memory is in-process (LangGraph's `MemorySaver`) — it resets on server restart and doesn't persist across deployments. This is intentional; no user data is stored long-term.
+- Conversation memory is in-process (LangGraph's `MemorySaver`) - it resets on server restart and doesn't persist across deployments. This is intentional; no user data is stored long-term.
