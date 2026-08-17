@@ -1,15 +1,15 @@
 # IITG RAG Chatbot
 
-A conversational AI assistant for IIT Guwahati, answering questions using the institute's own documents — admissions info, academic policies, campus services, timetables, and more.
+A conversational AI assistant for IIT Guwahati, answering questions using the institute's own documents - admissions info, academic policies, campus services, timetables, and more.
 
 ## What it does
 
-Ask a question, get an answer grounded in real IITG documents — not a generic AI response. Understands follow-up questions, filters abusive or off-topic messages, and can read content from PDFs, tables, and images.
+Ask a question, get an answer grounded in real IITG documents - not a generic AI response. Understands follow-up questions, filters abusive or off-topic messages, and can read content from PDFs, tables, and images.
 
 ## Structure
 
 ```
-├── backend/     FastAPI + LangChain/LangGraph + ChromaDB + Groq — the API
+├── backend/     FastAPI + LangChain/LangGraph + ChromaDB + Groq - the API
 └── frontend/    React (Vite) — the chat UI
 ```
 
@@ -22,15 +22,15 @@ See `backend/README.md` for backend details.
 
 ## Running Locally
 
-Two terminals — backend first, then frontend.
+Two terminals - backend first, then frontend.
 
 ```bash
-# Terminal 1 — backend
+# Terminal 1 - backend
 cd backend
 pip install -r requirements.txt
 python -m uvicorn main:app --reload
 
-# Terminal 2 — frontend
+# Terminal 2 - frontend
 cd frontend
 npm install
 npm run dev
